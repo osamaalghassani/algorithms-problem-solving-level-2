@@ -358,12 +358,117 @@ void GenerateKeys(int NumberOfKey) {
 
 //problem22
 
+void ReadArray(int arr[100], int& arrLenght) {
+	cout << "\nEnter Number of Element\n";
+	cin >> arrLenght;
+	cout << "\nEnter array elements\n";
+	for (int i = 0; i < arrLenght; i++)
+	{
+		cout << "Enter Element of [" << i + 1 << "]:";
+		cin >> arr[i];
+	}
+	cout << endl;
+}
+void PrintArray(int arr[100], int arrLenght) {
 
+	for (int i = 0; i < arrLenght; i++)
+		cout <<arr[i]<<" ";
+
+	
+	cout << endl;
+}
+int TimesRepeated(int Number, int arr[100], int arrLenght) {
+	int count = 0;
+	for (int i = 0; i < arrLenght; i++)
+	{
+		if (arr[i] == Number)
+			count++;
+	}
+	return  count ;
+	
+}
+//problem 23 
+void FillArrayWithRandomNumber(int arr[100],int &arrLenght) {
+	cout << "\n Enter The Number Of Elements:\n";
+	cin >> arrLenght;
+	for (int i = 0; i < arrLenght; i++)
+	{
+	arr[i]= RandomNumber(1,100);
+
+	}
+	
+}
+//problem 24
+
+int MaxNumberInArray(int arr[100],int Length) {
+	int max = 0;
+	for (int i = 0; i < Length; i++)
+	{
+		if (arr[i] >max)
+			max = arr[i];
+	}
+	return max;
+}
+//problem 25
+int MinNumberInArray(int arr[100], int Length) {
+	int min = arr[0];
+	for (int i = 0; i < Length; i++)
+	{
+		if (arr[i] < min)
+			min = arr[i];
+	}
+	return min;
+}
+//problem 26
+int sumArray(int arr[100], int Lenght) {
+	int sum = 0;
+	for (int i = 0; i < Lenght; i++)
+	{
+		sum += arr[i];
+	}
+	return sum;
+}
+//problem 27
+float AvargeArray(int arr[100], int Lenght) {
+	return (float)sumArray(arr, Lenght) / Lenght;
+}
+//problem 28
+void copyArray(int arraySource[100], int arrayDistantion[100], int arrLenght) {
+	for (int i = 0; i < arrLenght; i++)
+		arrayDistantion[i] = arraySource[i];
+}
+//problem 29
+void copyPrimeNumberToArray(int arraySource[100], int arrayDistantion[100], int arrLenght,int& arr2Lenght) {
+	int counter = 0;
+	for (int i = 0; i < arrLenght; i++) {
+		if (CheckPrime(arraySource[i]) == enPrimeNotPrime::prime) {
+			arrayDistantion[counter] = arraySource[i];
+			counter++;
+		}
+	}
+	arr2Lenght = --counter;
+}
+//problem 30
+void sumOfTwoArray(int arr1[100], int arr2[100],int arrSum[100], int arrLenght) {
+	for (int i = 0; i < arrLenght; i++) {
+		arrSum[i] = arr1[i] + arr2[i];
+	}
+}
 int main()
 {
 	srand((unsigned) time(NULL));
-	GenerateKeys(ReadPostiveNumber("Plase Enter Key to Generate"));
+	int arr[100], lenght, arr2[100], arrSum[100];
+	FillArrayWithRandomNumber(arr, lenght);
+	FillArrayWithRandomNumber(arr2, lenght);
 
+	cout << "Array Elemnets 1 ";
+	PrintArray(arr, lenght);
+	cout << "\n Array2 Element ";
+		PrintArray(arr2, lenght);
+
+		sumOfTwoArray(arr, arr2, arrSum, lenght);
+		cout << "\n Array Sum Element";
+	PrintArray(arrSum, lenght);
 
 
 
