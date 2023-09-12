@@ -454,21 +454,64 @@ void sumOfTwoArray(int arr1[100], int arr2[100],int arrSum[100], int arrLenght) 
 		arrSum[i] = arr1[i] + arr2[i];
 	}
 }
+//problem 31
+
+void Swap(int& A, int& B) {
+	int temp;
+	temp = A;
+	A = B;
+	B = temp;
+
+}
+void fillArraywith1roN(int arr[100], int  lenght) {
+	
+	for (int i = 0; i < lenght; i++)
+	{
+		arr[i] = i + 1;
+	}
+}
+void ShufflArray(int arr[100], int lenght) {
+	for (int i = 0; i < lenght; i++)
+	{
+
+		Swap(arr[RandomNumber(1, lenght) - 1], arr[RandomNumber(1, lenght) - 1]);
+	}
+}
+//problem 32
+void copyArrayInReverseOrder(int arraySource[100], int arrayDistantion[100], int arrLenght) {
+	for (int i = 0; i < arrLenght; i++)
+		arrayDistantion[i] = arraySource[arrLenght-1-i];
+}
+// problem 33
+void fillArrayWithKey(string arr[100], int& arrLenght) {
+	cout << "\n Enter The Number Of Elements:\n";
+	cin >> arrLenght;
+	for (int i = 0; i < arrLenght; i++)
+	{
+		arr[i] = GenerateKey();
+	}
+}
+
+void PrintStringArray(string arr[100], int arrLenght) {
+	cout << "\nArray Elemnets \n";
+
+	for (int i = 0; i < arrLenght; i++)
+		cout<<"Array["<<i+1<<"]: "<< arr[i] <<endl;
+
+
+	
+}
+
 int main()
 {
 	srand((unsigned) time(NULL));
-	int arr[100], lenght, arr2[100], arrSum[100];
-	FillArrayWithRandomNumber(arr, lenght);
-	FillArrayWithRandomNumber(arr2, lenght);
+	
+	string arr[100]; int lenght;
 
-	cout << "Array Elemnets 1 ";
-	PrintArray(arr, lenght);
-	cout << "\n Array2 Element ";
-		PrintArray(arr2, lenght);
-
-		sumOfTwoArray(arr, arr2, arrSum, lenght);
-		cout << "\n Array Sum Element";
-	PrintArray(arrSum, lenght);
+	
+	fillArrayWithKey(arr, lenght);
+	PrintStringArray(arr, lenght);
+	
 
 
 
