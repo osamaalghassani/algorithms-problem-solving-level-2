@@ -399,7 +399,12 @@ void FillArrayWithRandomNumber(int arr[100],int &arrLenght) {
 	
 }
 //problem 24
-
+int ReadNumber(string Message) {
+	int Number ;
+	cout << Message << endl;
+	cin >> Number;
+	return Number;
+}
 int MaxNumberInArray(int arr[100],int Length) {
 	int max = 0;
 	for (int i = 0; i < Length; i++)
@@ -502,15 +507,35 @@ void PrintStringArray(string arr[100], int arrLenght) {
 	
 }
 
+//problem 34
+short FindNumberPostionInArray(int Number, int arr[100],int arrLenght) {
+	
+	for (int i = 0; i < arrLenght; i++)
+	{
+		if (arr[i] == Number) {
+			return i;
+		}
+	}
+	return -1;
+}
+//problem 35
+bool FindNumberInArray(int Number, int arr[100], int arrLenght) {
+	return  FindNumberPostionInArray( Number,  arr,  arrLenght)!=-1?true:false;
+}
 int main()
 {
 	srand((unsigned) time(NULL));
-	
-	string arr[100]; int lenght;
+	int arr[100]; int lenght;
 
 	
-	fillArrayWithKey(arr, lenght);
-	PrintStringArray(arr, lenght);
+	FillArrayWithRandomNumber(arr, lenght);
+	PrintArray(arr, lenght);
+	int numer = ReadNumber("Plase Enter Numeber To Serch");
+	cout << "Numeber You Are Lokig for is" << numer<<endl;
+	if (FindNumberInArray(numer, arr, lenght))
+		cout << "Yes The Number Is Found " << endl;
+	else
+		cout << "No, The Number is not Found ";
 	
 
 
