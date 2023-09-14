@@ -399,9 +399,9 @@ void FillArrayWithRandomNumber(int arr[100],int &arrLenght) {
 	
 }
 //problem 24
-int ReadNumber(string Message) {
+int ReadNumber() {
 	int Number ;
-	cout << Message << endl;
+	cout << "Please Enter a Number " << endl;
 	cin >> Number;
 	return Number;
 }
@@ -519,25 +519,32 @@ short FindNumberPostionInArray(int Number, int arr[100],int arrLenght) {
 	return -1;
 }
 //problem 35
-bool FindNumberInArray(int Number, int arr[100], int arrLenght) {
+bool IsNumberInArray(int Number, int arr[100], int arrLenght) {
 	return  FindNumberPostionInArray( Number,  arr,  arrLenght)!=-1?true:false;
+}
+// probelm 36
+void AddArrayElement(int Number, int arr[100], int& arrLength) {
+	arrLength++;
+	arr[arrLength - 1] = Number;
+}
+void InputUserNumberInArray(int arr[100], int& arrlenght) {
+	bool addMore = true;
+	do
+	{
+		AddArrayElement(ReadNumber(), arr, arrlenght);
+		cout << "Do you want to add more Number ?\n Yes[1] No[0]\n";
+		cin >> addMore;
+
+	} while (addMore);
+	
 }
 int main()
 {
 	srand((unsigned) time(NULL));
-	int arr[100]; int lenght;
+	int arr[100]; int lenght=0;
 
-	
-	FillArrayWithRandomNumber(arr, lenght);
+	InputUserNumberInArray(arr, lenght);
 	PrintArray(arr, lenght);
-	int numer = ReadNumber("Plase Enter Numeber To Serch");
-	cout << "Numeber You Are Lokig for is" << numer<<endl;
-	if (FindNumberInArray(numer, arr, lenght))
-		cout << "Yes The Number Is Found " << endl;
-	else
-		cout << "No, The Number is not Found ";
-	
-
 
 
 
