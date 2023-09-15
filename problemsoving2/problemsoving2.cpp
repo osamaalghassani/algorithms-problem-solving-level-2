@@ -470,6 +470,7 @@ void Swap(int& A, int& B) {
 }
 void fillArraywith1roN(int arr[100], int  lenght) {
 	
+
 	for (int i = 0; i < lenght; i++)
 	{
 		arr[i] = i + 1;
@@ -527,6 +528,7 @@ void AddArrayElement(int Number, int arr[100], int& arrLength) {
 	arrLength++;
 	arr[arrLength - 1] = Number;
 }
+
 void InputUserNumberInArray(int arr[100], int& arrlenght) {
 	bool addMore = true;
 	do
@@ -538,13 +540,40 @@ void InputUserNumberInArray(int arr[100], int& arrlenght) {
 	} while (addMore);
 	
 }
+
+//problem 37
+
+void CopyArrayWithAddElement(int arrSource[100],int arrDestination[100], int arrlenght,int& arrDestinationLenght) {
+	for (int i = 0; i < arrlenght; i++)
+		AddArrayElement(arrSource[i], arrDestination, arrDestinationLenght);
+	
+}
+// problem 38
+void CopyOddNumbers(int arrSource[100], int arrDestination[100],int arrlenght, int& arrDestinationLenght) {
+	for (int i = 0; i < arrlenght; i++) {
+		if(arrSource[i] % 2 !=0 )
+		AddArrayElement(arrSource[i], arrDestination, arrDestinationLenght);
+	}
+
+}
+void CopyPrimeNumbers(int arrSource[100], int arrDestination[100], int arrlenght, int& arrDestinationLenght) {
+	for (int i = 0; i < arrlenght; i++) {
+		if( CheckPrime(arrSource[i])==prime)
+			AddArrayElement(arrSource[i], arrDestination, arrDestinationLenght);
+	}
+
+}
 int main()
 {
 	srand((unsigned) time(NULL));
-	int arr[100]; int lenght=0;
+	int arr[100], arrCopy[100]; int lenght;int Lenght2 = 0;
 
-	InputUserNumberInArray(arr, lenght);
+	FillArrayWithRandomNumber(arr, lenght);
 	PrintArray(arr, lenght);
+	CopyPrimeNumbers(arr, arrCopy, lenght, Lenght2);
+	PrintArray(arrCopy, Lenght2);
+
+
 
 
 
