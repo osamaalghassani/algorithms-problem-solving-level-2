@@ -49,7 +49,7 @@ float ReadPostiveNumber(string message) {
 	return number;
 }
 enPrimeNotPrime CheckPrime(int Number) {
-	int M = round(Number / 2);
+	int M =  round(Number / 2);
 	for (int Counter = 2; Counter <= M; Counter++)
 	{
 		if (Number % Counter == 0)
@@ -556,29 +556,376 @@ void CopyOddNumbers(int arrSource[100], int arrDestination[100],int arrlenght, i
 	}
 
 }
+// problem 39
 void CopyPrimeNumbers(int arrSource[100], int arrDestination[100], int arrlenght, int& arrDestinationLenght) {
 	for (int i = 0; i < arrlenght; i++) {
-		if( CheckPrime(arrSource[i])==prime)
+		if( CheckPrime(arrSource[i])==enPrimeNotPrime::prime)
 			AddArrayElement(arrSource[i], arrDestination, arrDestinationLenght);
 	}
 
 }
+//prolbem 40 
+void copyDistinc(int arrSource[100], int arrDestination[100], int arrlenght, int& arrDestinationLenght) {
+	for (int i = 0; i < arrlenght; i++)
+	{
+		
+		if (!IsNumberInArray(arrSource[i], arrDestination, arrDestinationLenght)) {
+			AddArrayElement(arrSource[i], arrDestination, arrDestinationLenght);
+		}
+
+	}
+}
+void FillArray(int arr[100], int& arrLengh) {
+	arrLengh = 6;
+	arr[0] = 10;
+	arr[1] = 20;
+	arr[2] = 30;
+	arr[3] = 40;
+	arr[4] = 20;
+	arr[5] = 10;
+	
+}
+// problem 41
+bool  IsPalindromArray(int arr[100],int arrlenght) {
+	for (int i = 0; i < arrlenght; i++)
+	{
+		if (arr[i] != arr[arrlenght - i - 1])
+			return false;
+
+	}
+	return true;
+}
+//prolbem 42
+int countOddNumberInArray(int arr[100], int arrLenght) {
+	int Counter = 0;
+	for (int i = 0; i < arrLenght; i++)
+	{
+		if (arr[i] % 2 != 0)
+			Counter++;
+
+	}
+	return Counter;
+ }
+// problem 43
+int countEvenNumberInArray(int arr[100], int arrLenght) {
+	int Counter = 0;
+	for (int i = 0; i < arrLenght; i++)
+	{
+		if (arr[i] % 2 == 0)
+			Counter++;
+
+	}
+	return Counter;
+}
+// problem 44
+void FillArrayWithRandomNumberPostiv(int arr[100], int& arrLenght) {
+	cout << "\n Enter The Number Of Elements:\n";
+	cin >> arrLenght;
+	for (int i = 0; i < arrLenght; i++)
+	{
+		arr[i] = RandomNumber(-100, 100);
+
+	}
+
+}
+//problem 45
+int countPostiveNumberInArray(int arr[100], int arrLenght) {
+	int Counter = 0;
+	for (int i = 0; i < arrLenght; i++)
+	{
+		if (arr[i]  < 0)
+			Counter++;
+
+	}
+	return Counter;
+}
+
+// problem 46
+float myAbs (float Number)
+{
+	if (Number > 0)
+		return Number;
+	else
+		return Number * -1;
+}
+// problem 47
+float getFractionPart(float Number) {
+	return  Number - (int) Number;
+}
+// problem 48
+int  myRound(float Number) {
+	int IntPart=(int) Number;
+	float FractionPart = getFractionPart(Number);
+	
+	if (abs(FractionPart) >= .5) {
+		if (Number > 0) {
+			return ++IntPart;
+		}
+		else {
+			return --IntPart;
+		}
+
+	}
+	else {
+
+	
+		return IntPart;
+	}
+}
+// problem 49
+int  myFloor(float Number) {
+	if (Number > 0)
+		return Number;
+	else
+		return int(Number) - 1;
+}
+// problem 50
+int mySqrt(float Number) {
+	return pow(Number,0.5);
+}
+// project stone-paper-scissor
+enum enGameChoice { Stone = 1, Paper = 2,Scissors = 3 };
+enum enWinner { Player1 = 1, Computer = 2, Draw = 3 };
+struct stRoundInfo
+{
+	short RoundNumber = 0;
+	enGameChoice Player1Choice;
+	enGameChoice ComputerChoice;
+	enWinner Winner;
+	string WinnerName;
+};
+struct stGameResults
+{
+	short GameRounds = 0;
+	short Player1WinTimes = 0;
+	short Computer2WinTimes = 0;
+	short DrawTimes = 0;
+	enWinner GameWinner;
+	string WinnerName = "";
+};
+int randomNumber(int From, int To)
+{
+	//Function to generate a random number
+	int randNum = rand() % (To - From + 1) + From;
+	return randNum;
+}
+string WinnerName(enWinner Winner)
+{
+	string arrWinnerName[3] = { "Player1","Computer","No Winner"
+	};
+	return arrWinnerName[Winner - 1];
+}
+
+enWinner WhoWonTheRound(stRoundInfo RoundInfo)
+{
+	if (RoundInfo.Player1Choice == RoundInfo.ComputerChoice)
+	{
+		return enWinner::Draw;
+	}
+	switch (RoundInfo.Player1Choice)
+	{
+	case enGameChoice::Stone:
+		if (RoundInfo.ComputerChoice == enGameChoice::Paper)
+		{
+			return enWinner::Computer;
+		}
+		break;
+	case enGameChoice::Paper:
+		if (RoundInfo.ComputerChoice == enGameChoice::Scissors)
+		{
+			return enWinner::Computer;
+		}
+		break;
+	case enGameChoice::Scissors:
+			if (RoundInfo.ComputerChoice == enGameChoice::Stone)
+			{
+				return enWinner::Computer;
+			}
+			break;
+	}
+	//if you reach here then player1 is the winner.
+	return enWinner::Player1;
+}
+string ChoiceName(enGameChoice Choice)
+{
+	string arrGameChoices[3] = { "Stone","Paper","Scissors" };
+	return arrGameChoices[Choice - 1];
+}
+
+void SetWinnerScreenColor(enWinner Winner)
+{
+	switch (Winner)
+	{
+	case enWinner::Player1:
+		system("color 2F"); //turn screen to Green
+		break;
+	case enWinner::Computer:
+		system("color 4F"); //turn screen to Red
+		cout << "\a";
+		break;
+	default:
+		system("color 6F"); //turn screen to Yellow
+		break;
+	}
+}
+void PrintRoundResults(stRoundInfo RoundInfo)
+{
+	cout << "\n____________Round [" << RoundInfo.RoundNumber << "]____________\n\n";
+		cout << "Player1 Choice: " <<
+		ChoiceName(RoundInfo.Player1Choice) << endl;
+	cout << "Computer Choice: " <<
+		ChoiceName(RoundInfo.ComputerChoice) << endl;
+	cout << "Round Winner : [" << RoundInfo.WinnerName << "]\n";
+		cout << "__________________________________\n" << endl;
+	SetWinnerScreenColor(RoundInfo.Winner);
+}
+enWinner WhoWonTheGame(short Player1WinTimes, short
+	ComputerWinTimes)
+{
+	if (Player1WinTimes > ComputerWinTimes)
+		return enWinner::Player1;
+	else if (ComputerWinTimes > Player1WinTimes)
+		return enWinner::Computer;
+	else
+		return enWinner::Draw;
+}
+
+stGameResults FillGameResults(int GameRounds, short
+	Player1WinTimes, short ComputerWinTimes, short DrawTimes)
+{
+	stGameResults GameResults;
+	GameResults.GameRounds = GameRounds;
+	GameResults.Player1WinTimes = Player1WinTimes;
+	GameResults.Computer2WinTimes = ComputerWinTimes;
+	GameResults.DrawTimes = DrawTimes;
+	GameResults.GameWinner = WhoWonTheGame(Player1WinTimes,
+		ComputerWinTimes);
+	GameResults.WinnerName = WinnerName(GameResults.GameWinner);
+	return GameResults;
+}
+enGameChoice ReadPlayer1Choice()
+{
+	short Choice = 1;
+	do
+	{
+		cout << "\nYour Choice: [1]:Stone, [2]:Paper, [3]:Scissors? ";
+			cin >> Choice;
+	} while (Choice < 1 || Choice >3);
+	return (enGameChoice)Choice;
+}
+enGameChoice GetComputerChoice()
+{
+	return (enGameChoice)randomNumber(1, 3);
+}
+
+stGameResults PlayGame(short HowManyRounds)
+{
+	stRoundInfo RoundInfo;
+	short Player1WinTimes = 0, ComputerWinTimes = 0, DrawTimes = 0;
+	for (short GameRound = 1; GameRound <= HowManyRounds; GameRound++)
+	{
+		cout << "\nRound [" << GameRound << "] begins:\n";
+		RoundInfo.RoundNumber = GameRound;
+		RoundInfo.Player1Choice = ReadPlayer1Choice();
+		RoundInfo.ComputerChoice = GetComputerChoice();
+		RoundInfo.Winner = WhoWonTheRound(RoundInfo);
+		RoundInfo.WinnerName = WinnerName(RoundInfo.Winner);
+		//Increase win/Draw counters
+		if (RoundInfo.Winner == enWinner::Player1)
+			Player1WinTimes++;
+		else if (RoundInfo.Winner == enWinner::Computer)
+			ComputerWinTimes++;
+		else
+			DrawTimes++;
+		PrintRoundResults(RoundInfo);
+	}
+	return FillGameResults(HowManyRounds, Player1WinTimes,
+		ComputerWinTimes, DrawTimes);
+}
+string Tabs(short NumberOfTabs)
+{
+	string t = "";
+	for (int i = 1; i < NumberOfTabs; i++)
+	{
+		t = t + "\t";
+		cout << t;
+	}
+	return t;
+}
+
+void ShowGameOverScreen()
+{
+	cout << Tabs(2) <<
+		"__________________________________________________________\n\n";
+	cout << Tabs(2) << " +++ G a m e O v e r ++ + \n";
+		cout << Tabs(2) <<
+		"__________________________________________________________\n\n";
+}
+void ShowFinalGameResults(stGameResults GameResults)
+{
+	cout << Tabs(2) << "_____________________ [Game Results]_____________________\n\n";
+cout << Tabs(2) << "Game Rounds : " << GameResults.GameRounds << endl;
+	cout << Tabs(2) << "Player1 won times : " <<
+		GameResults.Player1WinTimes << endl;
+	cout << Tabs(2) << "Computer won times : " <<
+		GameResults.Computer2WinTimes << endl;
+	cout << Tabs(2) << "Draw times : " <<
+		GameResults.DrawTimes << endl;
+	cout << Tabs(2) << "Final Winner : " <<
+		GameResults.WinnerName << endl;
+	cout << Tabs(2) <<
+		"___________________________________________________________\n";
+	SetWinnerScreenColor(GameResults.GameWinner);
+}
+short ReadHowManyRounds()
+{
+	short GameRounds = 1;
+	do
+	{
+		cout << "How Many Rounds 1 to 10 ? \n";
+		cin >> GameRounds;
+	} while (GameRounds < 1 || GameRounds >10);
+	return GameRounds;
+}
+
+void ResetScreen()
+{
+	system("cls");
+	system("color 0F");
+}
+void StartGame()
+{
+	char PlayAgain = 'Y';
+	do
+	{
+		ResetScreen();
+		stGameResults GameResults = PlayGame(ReadHowManyRounds());
+		ShowGameOverScreen();
+		ShowFinalGameResults(GameResults);
+		cout << endl << Tabs(3) << "Do you want to play again? Y/N? ";
+		cin >> PlayAgain;
+	} while (PlayAgain == 'Y' || PlayAgain == 'y');
+}
+
+
 int main()
 {
-	srand((unsigned) time(NULL));
-	int arr[100], arrCopy[100]; int lenght;int Lenght2 = 0;
+	srand((unsigned)time(NULL));
 
-	FillArrayWithRandomNumber(arr, lenght);
-	PrintArray(arr, lenght);
-	CopyPrimeNumbers(arr, arrCopy, lenght, Lenght2);
-	PrintArray(arrCopy, Lenght2);
 
+	StartGame();
 
 
 
 
 
 }
+
+
+
+
+
+
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
 // Debug program: F5 or Debug > Start Debugging menu
